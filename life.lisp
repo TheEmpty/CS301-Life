@@ -85,20 +85,6 @@
 ; Generation
 (setf generation 0)
 
-(setf DEBUG-FILE nil)
-;(setf DEBUG-FILE (open "life.txt" :direction :output :if-exists :supersede))
-
-;(let ((sweets-board (make-array '(8 57)
-;              :element-type 'bit
-;              :initial-contents '(
-;(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-;(0 0 0 0 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-;(0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)
-;(0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 1 1 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 1 0 0 1 1 0 0 0)
-;(0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0 1 1 1 1 1 0 1 1 1 0 0 0 1 0 0 1 0 1 0 0 0 1 0 0 0 0 0)
-;(0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 1 0 1 1 1 1 1 0 1 1 1 1 1 0 0 0 1 0 0 0 1 0 0 1 0 1 1 1 1 1 0 0 1 0 0 0 1 0 0 0 0)
-;(0 0 0 0 0 0 0 1 0 1 0 0 1 1 0 0 1 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 1 0 1 0 0 1 0 1 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0)
-;(0 0 0 1 1 1 1 0 0 0 1 1 0 0 1 1 0 0 0 1 1 1 1 0 0 1 1 1 1 0 0 0 1 1 0 0 1 0 0 1 0 0 1 1 1 1 0 1 1 0 0 1 1 0 0 0 0)))))
 (let ((clisp-board (make-array '(7 42)
        :element-type 'bit
        :initial-contents '(
@@ -109,15 +95,6 @@
 (1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0)
 (1 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 1 0 0 0 0 0)
 (0 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0 0 1 1 1 1 1 1 1 0 0 0 1 1 1 1 1 0 0 0 1 0 0 0 0 0)))))
-;(let ((simple-board (make-array '(5 10)
-;                         :element-type 'bit
-;                         :initial-contents '(
-;                                             (0 0 0 0 0 0 0 0 0 0)
-;                                             (0 1 0 0 0 1 0 0 0 0)
-;                                             (0 1 0 0 0 1 0 0 0 0)
-;                                             (0 1 0 0 0 1 0 0 0 0)
-;                                             (0 0 0 0 0 0 0 0 0 0)
-;  ))))
   (format t "~a" ansi-clearscreen)
   (let ((board clisp-board))
     (loop
@@ -126,12 +103,6 @@
       (format t "~aConway's Game of Life~a~%~%" ansi-green ansi-clear)
       (ansi-print-board board)
       (format t "~%~%~aGeneration: ~d~a" ansi-cyan generation ansi-clear)
-      ; DEBUG
-      (if DEBUG-FILE
-        (progn (format DEBUG-FILE "Generation: ~d:~%" generation)
-          (print-board board DEBUG-FILE)
-          (format DEBUG-FILE "~%~%~%")))
-      ; E/O debug
       (setf board (next-generation board))
       (if (equal generation 1)
         (and (read) (format t "~a" ansi-clearscreen))
