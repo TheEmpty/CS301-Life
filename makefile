@@ -5,7 +5,7 @@ JCLASSES = ./java-classes
 JFQN = edu.bridgeport.melabid.cs301.life.Game
 
 LISP = clisp
-LIST_FLAGS =
+LISP_FLAGS =
 
 default:
 	@echo "Please pick from 'java', 'lisp', 'java-compile', 'java-run' options"
