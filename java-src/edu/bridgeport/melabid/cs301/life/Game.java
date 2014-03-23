@@ -52,6 +52,7 @@ public class Game {
 
 			b.nextGeneration();
 			if(i == 1) {
+				System.out.println((new ColoredString("Press a key and then enter to start.")).yellow());
 				try { System.in.read(); } catch (Exception ex) {}
 			} else {
 				long result = System.nanoTime() - startTime;

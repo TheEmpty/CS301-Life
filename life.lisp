@@ -105,5 +105,8 @@
       (format t "~%~%~aGeneration: ~d~a" ansi-cyan generation ansi-clear)
       (setf board (next-generation board))
       (if (equal generation 1)
-        (and (read) (format t "~a" ansi-clearscreen))
+        (progn
+          (format t "~%~aPress a key and then enter to start.~a~%" ansi-yellow ansi-clear)
+          (read)
+          (format t "~a" ansi-clearscreen))
         (sleep 0.5)))))
